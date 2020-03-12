@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/instagram"
+            android:icon="@drawable/instagram"
+            android:title="Instagram" />
+        <item
+            android:id="@+id/facebook"
+            android:icon="@drawable/facebook"
+            android:title="Facebook" />
+        <item
+            android:id="@+id/twitter"
+            android:icon="@drawable/twitter"
+            android:title="Twitter" />
+        <item
+            android:id="@+id/linkdin"
+            android:icon="@drawable/linkedin"
+            android:title="linkedin" />
+    </group>
+
+  <group android:id="@+id/menu_bottom">
+      <item
+          android:id="@+id/request_Video"
+          android:icon="@drawable/ic_menu_camera"
+          android:title="Request a video" />
+
+      <item
+          android:id="@+id/About_Us"
+          android:icon="@drawable/ic_menu_camera"
+          android:title="About Us" />
+
+
+  </group>
+    <item android:title="Recommended">
+        <menu>
+            <item
+                android:id="@+id/nav_amazon"
+                android:icon="@drawable/amazon"
+                android:title="Shop on Amazon" />
+            <item
+                android:id="@+id/nav_Flipkart"
+                android:icon="@drawable/flipkar"
+                android:title="Shop on Flipkart" />
+
+        </menu>
+
+    </item>
+
+</menu>
