@@ -15,6 +15,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -49,9 +50,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId ();
-        if (id == R.id.action_settings) {
-            startActivity (new Intent (Intent.ACTION_VIEW, Uri.parse ("https://www.facebook.com/Knowledge-hub-101620281456006/?boosted_auto_open=boosted_pagelike&ref=notif&modal=composer&notif_id=1583859512210732&notif_t=aymt_page_like_generic_tip_notif")));
 
+        if (id == R.id.facebook) {
+            startActivity (new Intent (Intent.ACTION_VIEW, Uri.parse ("https://www.facebook.com/Knowledge-hub-101620281456006/?boosted_auto_open=boosted_pagelike&ref=notif&modal=composer&notif_id=1583859512210732&notif_t=aymt_page_like_generic_tip_notif")));
 
             return true;
         }
@@ -83,17 +84,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         NavigationView navigationView = findViewById (R.id.nav_view);
         navigationView.setNavigationItemSelectedListener (this);
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        navigationView.setNavigationItemSelectedListener(this);
+
         navigationView.setItemIconTintList (null); //for origional and same icon
-
-
-        mAppBarConfiguration = new AppBarConfiguration.Builder (
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-                .setDrawerLayout (drawer)
-                .build ();
-        NavController navController = Navigation.findNavController (this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController (this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController (navigationView, navController);
 
 
     }
@@ -133,12 +132,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController (this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp (navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp ();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController (this, R.id.nav_host_fragment);
+//        return NavigationUI.navigateUp (navController, mAppBarConfiguration)
+//                || super.onSupportNavigateUp ();
+//    }
 
     @Override
     public void onBackPressed() {
@@ -167,11 +166,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
+//        Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
     switch (item.getItemId ())
     {
         case R.id.facebook:
-            Toast.makeText (this, "Facebook clicked", Toast.LENGTH_SHORT).show ();
+            Toast.makeText (getApplicationContext(), "Facebook clicked", Toast.LENGTH_SHORT).show ();
             break;
         case R.id.instagram:
             Toast.makeText (this, "Insta is clicked", Toast.LENGTH_SHORT).show ();
@@ -196,6 +195,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             break;
     }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
